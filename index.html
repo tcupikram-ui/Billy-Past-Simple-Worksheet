@@ -280,6 +280,7 @@ const norm=s=>s.toLowerCase().replace(/[^a-z' ]/g,'').replace(/\s+/g,' ').trim()
 const TOT={cls:18,ex1:9,ex2:6,ex3:6,ex4:6},GOT={cls:0,ex1:0,ex2:0,ex3:0,ex4:0},DONE={};
 const TOTAL=45;
 const EMAIL='ikram.boudaoud25@gmail.com';
+const ACCESS_KEY='69974b46-e8e3-4c3d-b9b1-9d5c67959a29';
 const LOCKED={cls:0,ex1:0,ex2:0,ex3:0};
 function gradeOf(p){return p>=90?'A':p>=80?'B':p>=70?'C':p>=60?'D':'F';}
 
@@ -487,23 +488,23 @@ async function submitToTeacher(){
  const t=collect();
  btn.disabled=true;btn.textContent='⏳ Sending…';
  const payload={
-  _subject:"Billy's Paper Round — "+name,
-  _captcha:'false',
-  _template:'table',
-  Name:name,
-  Date:$('dt').value||'—',
-  Score:pct+' / 100',
-  Grade:gradeOf(pct),
-  Answers:t
+  access_key:ACCESS_KEY,
+  subject:"Billy's Paper Round — "+name,
+  from_name:name,
+  name:name,
+  date:$('dt').value||'—',
+  score:pct+' / 100',
+  grade:gradeOf(pct),
+  answers:t
  };
  try{
-  const r=await fetch('https://formsubmit.co/ajax/'+EMAIL,{
+  const r=await fetch('https://api.web3forms.com/submit',{
    method:'POST',
    headers:{'Content-Type':'application/json','Accept':'application/json'},
    body:JSON.stringify(payload)
   });
   const j=await r.json().catch(()=>({}));
-  if(r.ok&&(j.success==='true'||j.success===true)){
+  if(r.ok&&j.success===true){
    msg('msgSubmit','✅ Submitted! Your teacher will receive your answers by email.');
   }else{
    throw new Error(j.message||('HTTP '+r.status));
