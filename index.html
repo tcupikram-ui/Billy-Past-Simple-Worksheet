@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Billy's Paper Round · Past Simple Worksheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Cairo:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#7b4bd6;--orange:#ff8a1f;--green:#14b86a;--red:#ff4d6d;--blue:#2f7bff;--pink:#ff4f8b;--teal:#0fb5a5;--ink:#2b2350}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:'Fredoka',system-ui,sans-serif;color:var(--ink);background:linear-gradient(160deg,#fff4d6,#ffe3f0 45%,#e3ecff);min-height:100vh;font-size:18px}
+button,input,select,textarea{font-family:inherit;font-size:inherit}
+button{cursor:pointer;border:0}
+.hidden{display:none!important}
+.ar{font-family:'Cairo',sans-serif;direction:rtl;unicode-bidi:isolate}
+.hl{background:linear-gradient(transparent 35%,#ffe45e 35%);padding:0 5px;border-radius:6px}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:60}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.93);backdrop-filter:blur(6px);box-shadow:0 3px 14px rgba(43,35,80,.12)}
+.tb-in{max-width:900px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:12px}
+.tb-in .t{font-weight:600;color:var(--purple);white-space:nowrap}
+.prog{flex:1;height:14px;background:#eee6ff;border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff8a1f,#ff4f8b,#7b4bd6);border-radius:99px;transition:width .5s}
+.score{font-weight:600;white-space:nowrap}
+
+.page{max-width:900px;margin:0 auto;padding:16px 14px 60px}
+.hero{text-align:center;margin:10px 0 16px}
+.hero .logo{font-size:64px;animation:bounce 2s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-10px) rotate(5deg)}}
+.hero h1{margin:0;font-size:clamp(32px,6vw,48px);color:var(--purple)}
+.hero h2{margin:2px 0 12px;font-size:22px;color:var(--orange);font-weight:600}
+.who{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.who label{background:#fff;border-radius:16px;padding:8px 14px;box-shadow:0 4px 0 rgba(43,35,80,.12);display:flex;align-items:center;gap:8px}
+.who input{border:0;border-bottom:2px dashed var(--purple);outline:0;background:transparent;min-width:150px;color:var(--ink)}
+
+.card{background:#fff;border-radius:26px;padding:20px 22px;margin:16px 0;box-shadow:0 8px 0 rgba(43,35,80,.1),0 14px 30px rgba(0,0,0,.08);border-left:10px solid var(--purple)}
+.card h3{margin:0 0 4px;font-size:25px;color:var(--purple);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.card .inst{margin:2px 0 12px;color:#6a62a0}
+.card .inst .ar{display:block;font-size:17px;margin-top:2px}
+.score-chip{margin-left:auto;background:#f3efff;color:var(--purple);border-radius:99px;padding:3px 14px;font-size:17px}
+.card.c-video{border-color:#ff0033}.card.c-story{border-color:var(--purple)}
+.card.c-cls{border-color:var(--purple)}.card.c-1{border-color:var(--pink)}.card.c-1 h3{color:var(--pink)}
+.card.c-2{border-color:var(--green)}.card.c-2 h3{color:var(--green)}
+.card.c-3{border-color:var(--orange)}.card.c-3 h3{color:var(--orange)}
+.card.c-4{border-color:var(--blue)}.card.c-4 h3{color:var(--blue)}
+.card.c-5{border-color:var(--teal)}.card.c-5 h3{color:var(--teal)}
+
+/* video */
+.c-video h3{color:#e0002e}
+.vrow{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.vthumb{position:relative;display:block;width:260px;max-width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,#ff4d6d,#7b4bd6);box-shadow:0 6px 0 rgba(0,0,0,.18);flex:0 0 auto}
+.vthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.vthumb .play{position:absolute;inset:0;display:grid;place-items:center;font-size:46px;color:#fff;text-shadow:0 3px 10px rgba(0,0,0,.5)}
+.vtext{flex:1;min-width:230px}
+.vtext p{margin:4px 0}
+.vlink{word-break:break-all;color:var(--blue);font-weight:500}
+.btn{display:inline-block;border-radius:99px;padding:10px 20px;font-weight:600;color:#fff;text-decoration:none;box-shadow:0 5px 0 rgba(0,0,0,.2);transition:transform .12s;margin:6px 8px 0 0}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.2)}
+.btn.red{background:#e0002e}.btn.purple{background:var(--purple)}.btn.green{background:var(--green)}.btn.orange{background:var(--orange)}.btn.blue{background:var(--blue)}.btn.grey{background:#8b86a8}
+.vwrap{margin-top:14px;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000}
+.vwrap iframe{width:100%;height:100%;border:0}
+
+/* story */
+.story p{line-height:1.85;margin:10px 0;font-size:19px}
+.v{color:#0b8a4c;background:#dcfbe9;border-radius:6px;padding:0 4px;font-weight:600}
+.f{color:#b35c00;background:#fff0d6;border-radius:6px;padding:0 4px;font-weight:600}
+body.nohl .v,body.nohl .f{color:inherit;background:none;font-weight:inherit;padding:0}
+.legend{font-size:15px;color:#6a62a0;margin-top:6px}
+.tg{background:#efeaff;color:var(--purple);border-radius:99px;padding:6px 16px;font-weight:600;font-size:16px}
+
+/* classify */
+.bank{min-height:64px;background:#f6f3ff;border:3px dashed #cfc3f5;border-radius:20px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{background:#fff;color:var(--ink);border-radius:99px;padding:7px 16px;font-weight:500;box-shadow:0 4px 0 rgba(43,35,80,.18);border:2px solid #d9cffa;transition:transform .12s}
+.chip:hover{transform:translateY(-2px)}
+.chip.sel{background:#ffe45e;border-color:#ffb400;transform:scale(1.1)}
+.chip.ok{background:#dcfbe9;border-color:var(--green);color:#0b6b3d;cursor:default}
+.chip.bad{background:#ffe4ea;border-color:var(--red);color:#a3213f;animation:shake .45s}
+.zones{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.zone{border-radius:20px;padding:10px 12px;min-height:150px;border:3px solid}
+.zone h4{margin:0 0 8px;text-align:center;font-size:20px}
+.zone.r{background:#e9f9ff;border-color:#5cc6f0}.zone.r h4{color:#0e7aa5}
+.zone.i{background:#fff0f6;border-color:#ff8fb5}.zone.i h4{color:#c2255c}
+.drop{display:flex;flex-wrap:wrap;gap:8px;min-height:90px}
+.zone.over,.bank.over{outline:4px solid #ffe45e}
+.msg{margin-top:10px;min-height:26px;font-weight:500}
+@keyframes shake{20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+.shake{animation:shake .45s}
+
+/* exercises */
+ol.ex{margin:0;padding-left:0;list-style:none;counter-reset:q}
+ol.ex>li{counter-increment:q;padding:9px 0 9px 40px;position:relative;line-height:2.1;border-bottom:1px dashed #eee}
+ol.ex>li:last-child{border-bottom:0}
+ol.ex>li::before{content:counter(q);position:absolute;left:0;top:9px;width:30px;height:30px;border-radius:50%;background:#f3efff;color:var(--purple);display:grid;place-items:center;font-weight:600;font-size:16px}
+.fill{width:150px;border:0;border-bottom:3px solid #c9bdf0;background:#faf8ff;border-radius:8px 8px 0 0;padding:2px 8px;text-align:center;outline:0;color:var(--ink)}
+.fill:focus{border-color:var(--pink);background:#fff}
+.fill.ok{border-color:var(--green);background:#dcfbe9;color:#0b6b3d;font-weight:600}
+.fill.bad{border-color:var(--red);background:#ffe4ea;animation:shake .45s}
+.tf{display:inline-flex;gap:8px;margin-left:8px;vertical-align:middle}
+.tf button{background:#f3efff;color:var(--ink);border-radius:99px;padding:5px 18px;border:2px solid #d9cffa;font-weight:500}
+.tf button.sel{background:#ffe45e;border-color:#ffb400}
+.tf button.ok{background:#dcfbe9;border-color:var(--green);color:#0b6b3d}
+.tf button.bad{background:#ffe4ea;border-color:var(--red);color:#a3213f;animation:shake .45s}
+.why{display:block;font-size:16px;color:#0b6b3d;line-height:1.4}
+select.num{border:3px solid #c9bdf0;border-radius:12px;padding:3px 8px;background:#fff7ed;margin-right:8px;font-weight:600;color:var(--ink)}
+select.num.ok{border-color:var(--green);background:#dcfbe9}
+select.num.bad{border-color:var(--red);background:#ffe4ea;animation:shake .45s}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:520px;margin:6px auto}
+.match .col{display:grid;gap:10px}
+.mb{background:#eef3ff;border:3px solid #bcd0ff;color:var(--ink);border-radius:16px;padding:10px;font-weight:500;box-shadow:0 4px 0 rgba(43,35,80,.15)}
+.mb.sel{background:#ffe45e;border-color:#ffb400;transform:scale(1.05)}
+.mb.done{color:#fff;border-color:transparent;cursor:default}
+.col-title{text-align:center;color:#6a62a0;font-size:16px}
+textarea{width:100%;min-height:150px;border:3px solid #bfeee9;border-radius:18px;padding:12px 14px;line-height:1.8;outline:0;background:#f6fffd;color:var(--ink);resize:vertical}
+textarea:focus{border-color:var(--teal)}
+.starters{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.starters button{background:#e5faf7;color:#0b7d72;border-radius:99px;padding:5px 14px;font-size:16px;border:2px solid #bfeee9}
+.counter{color:#6a62a0;font-size:16px;margin-top:6px}
+.tip{background:#fff7d6;border-radius:16px;padding:10px 14px;font-size:16px;margin-top:10px}
+button.chk:disabled{background:#c9c4de;cursor:not-allowed;box-shadow:0 5px 0 rgba(0,0,0,.12);transform:none}
+.fill[readonly]{border-color:#b9b3cf;background:#efecf7;color:#6a62a0;cursor:not-allowed}
+.num:disabled{background:#efecf7;border-color:#b9b3cf;color:#6a62a0;cursor:not-allowed}
+.tf button:disabled{background:#efecf7;border-color:#d9cffa;color:#9a95b8;cursor:not-allowed}
+
+/* results */
+.c-end{border-color:var(--orange);text-align:center}
+.c-end h3{justify-content:center;color:var(--orange)}
+.res-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}
+.res-grid div{background:#f6f3ff;border-radius:16px;padding:10px 4px;font-size:15px}
+.res-grid span{display:block;font-size:24px;font-weight:600;color:var(--purple)}
+.big-score{font-size:46px;font-weight:700;color:var(--purple)}
+.foot{text-align:center;color:#6a62a0;font-size:15px;margin-top:20px}
+@media(max-width:620px){.zones,.res-grid{grid-template-columns:1fr 1fr}.match{gap:12px}.fill{width:120px}.score-chip{margin-left:0}}
+@media print{
+ body{background:#fff}.topbar,.btn,.noprint,.vwrap,.tg,.starters,button.chk{display:none!important}
+ .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="topbar noprint"><div class="tb-in"><span class="t">📬 Billy's Paper Round</span><div class="prog"><i id="progFill"></i></div><span class="score">⭐ <span id="scoreNow">0</span> / 100</span></div></div>
+
+<main class="page">
+  <header class="hero">
+    <div class="logo">📬</div>
+    <h1>Billy's Paper Round</h1>
+    <h2>Past Simple Worksheet</h2>
+    <div class="who">
+      <label>Name: <input id="nm" placeholder="Write your name" autocomplete="off"></label>
+      <label>Date: <input id="dt" type="date"></label>
+    </div>
+  </header>
+
+  <!-- VIDEO -->
+  <section class="card c-video">
+    <h3>🎬 Watch the video first <span class="ar" style="font-size:18px;color:#6a62a0">شاهد الفيديو أولًا</span></h3>
+    <div class="vrow">
+      <a class="vthumb" href="https://youtu.be/WDg85KdxFHU" target="_blank" rel="noopener" aria-label="Open the video on YouTube">
+        <img src="https://img.youtube.com/vi/WDg85KdxFHU/hqdefault.jpg" alt="" onerror="this.style.display='none'">
+        <span class="play">▶</span>
+      </a>
+      <div class="vtext">
+        <p>Watch the video, then do the worksheet.</p>
+        <p>Video link: <a class="vlink" href="https://youtu.be/WDg85KdxFHU" target="_blank" rel="noopener">https://youtu.be/WDg85KdxFHU</a></p>
+        <a class="btn red" href="https://youtu.be/WDg85KdxFHU" target="_blank" rel="noopener">▶ Open on YouTube</a>
+        <button class="btn purple noprint" id="vbtn" onclick="toggleVideo()">📺 Watch here</button>
+      </div>
+    </div>
+    <div class="vwrap hidden" id="vwrap"><iframe id="yt" title="Video" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+  </section>
+
+  <!-- STORY -->
+  <section class="card c-story">
+    <h3>📖 Read the story <span class="ar" style="font-size:18px;color:#6a62a0">اقرأ القصة</span>
+      <button class="tg noprint" id="hlBtn" onclick="toggleHL()" style="margin-left:auto">🔦 Verbs: ON</button></h3>
+    <div class="story">
+      <p>Billy <span class="v">woke up</span> at 4:30 on Monday morning. He <span class="v">got</span> dressed quickly, <span class="v">ate</span> breakfast, and <span class="v">left</span> his house with his bicycle and his dog, Rocky. It <span class="v">was</span> still dark, and the moon <span class="v">was</span> shining.</p>
+      <p>Billy <span class="v">cycled</span> to the shop. He <span class="v">saw</span> two big bags of newspapers. He <span class="v">looked</span> at the map and <span class="v">delivered</span> newspapers to every house. He <span class="v">put</span> five newspapers through the letter box of the big white house.</p>
+      <p>Everyone <span class="v">was</span> asleep. The only person Billy <span class="v">saw</span> was the milkman. Suddenly, Rocky <span class="v">saw</span> a fox and <span class="v">started</span> barking loudly! “Shh, Rocky! I <span class="f">will lose</span> my job!” <span class="v">said</span> Billy. Rocky <span class="v">stopped</span> barking.</p>
+      <p>It <span class="v">took</span> Billy an hour and a half to deliver all the papers. He <span class="v">went</span> home and <span class="v">went</span> back to bed. He <span class="v">was</span> tired, but he <span class="v">was</span> happy. He <span class="v">thought</span> about the money and <span class="v">fell</span> asleep.</p>
+    </div>
+    <div class="legend"><span class="v">green</span> = Past Simple verbs · <span class="f">orange</span> = future (will)</div>
+  </section>
+
+  <!-- CLASSIFY -->
+  <section class="card c-cls">
+    <h3>🗂️ Classify verbs in this table <span class="score-chip" id="sc_cls">0 / 18</span></h3>
+    <p class="inst">Tap a verb, then tap the right box (or drag it). Tap a verb in a box to take it back.
+      <span class="ar">اضغط على الفعل ثم على الصندوق المناسب: منتظم (ed) أو شاذ.</span></p>
+    <div class="bank" id="bank" ondragover="event.preventDefault()" ondrop="dropTo(event,this)"></div>
+    <div class="zones">
+      <div class="zone r" data-t="r" onclick="zoneClick(this)" ondragover="event.preventDefault()" ondrop="dropTo(event,this.querySelector('.drop'))"><h4>Regular (ed)</h4><div class="drop"></div></div>
+      <div class="zone i" data-t="i" onclick="zoneClick(this)" ondragover="event.preventDefault()" ondrop="dropTo(event,this.querySelector('.drop'))"><h4>Irregular</h4><div class="drop"></div></div>
+    </div>
+    <button class="btn purple chk" id="btnCls" onclick="checkCls()">✅ Check</button>
+    <div class="msg" id="msgCls"></div>
+  </section>
+
+  <!-- EX 1 -->
+  <section class="card c-1">
+    <h3>✏️ Exercise 1: Fill in the blanks <span class="score-chip" id="sc_ex1">0 / 9</span></h3>
+    <p class="inst">Write the past simple form of the verb in brackets.
+      <span class="ar">اكتب صيغة الماضي البسيط للفعل الذي بين القوسين.</span></p>
+    <ol class="ex" id="ex1"></ol>
+    <button class="btn blue chk" id="btnEx1" style="background:var(--pink)" onclick="checkEx1()">✅ Check</button>
+    <div class="msg" id="msg1"></div>
+  </section>
+
+  <!-- EX 2 -->
+  <section class="card c-2">
+    <h3>✅ Exercise 2: True or False <span class="score-chip" id="sc_ex2">0 / 6</span></h3>
+    <p class="inst">Choose True or False.
+      <span class="ar">اختر صح (True) أو خطأ (False).</span></p>
+    <ol class="ex" id="ex2"></ol>
+    <button class="btn green chk" id="btnEx2" onclick="checkEx2()">✅ Check</button>
+    <div class="msg" id="msg2"></div>
+  </section>
+
+  <!-- EX 3 -->
+  <section class="card c-3">
+    <h3>🔢 Exercise 3: Put the story in order <span class="score-chip" id="sc_ex3">0 / 6</span></h3>
+    <p class="inst">Number the sentences 1–6 in the correct order.
+      <span class="ar">رتّب الجمل من 1 إلى 6 حسب أحداث القصة.</span></p>
+    <ol class="ex" id="ex3" style="counter-reset:none"></ol>
+    <button class="btn orange chk" id="btnEx3" onclick="checkEx3()">✅ Check</button>
+    <div class="msg" id="msg3"></div>
+  </section>
+
+  <!-- EX 4 -->
+  <section class="card c-4">
+    <h3>🧩 Exercise 4: Match the verbs <span class="score-chip" id="sc_ex4">0 / 6</span></h3>
+    <p class="inst">Match each present form to its past form! Tap one verb on the left, then its past form on the right.
+      <span class="ar">طابق كل فعل في المضارع مع صيغته في الماضي.</span></p>
+    <div class="match">
+      <div class="col"><div class="col-title">Present</div><div class="col" id="mL"></div></div>
+      <div class="col"><div class="col-title">Past</div><div class="col" id="mR"></div></div>
+    </div>
+    <div class="msg" id="msg4"></div>
+  </section>
+
+  <!-- EX 5 -->
+  <section class="card c-5">
+    <h3>📝 Exercise 5: Write about your morning! <span class="score-chip">teacher checks ✍️</span></h3>
+    <p class="inst">Use the Past Simple to write 3–4 sentences about what you did this morning.
+      <span class="ar">استعمل الماضي البسيط واكتب 3 أو 4 جمل عمّا فعلتَه هذا الصباح.</span></p>
+    <div class="starters noprint" id="starters"></div>
+    <textarea id="ex5" placeholder="This morning I woke up at … "></textarea>
+    <div class="counter" id="cnt">0 sentences · 0 words</div>
+    <div class="tip">💡 Remember: wake → <span class="hl">woke</span> · get → <span class="hl">got</span> · eat → <span class="hl">ate</span> · go → <span class="hl">went</span> · regular verbs + <span class="hl">-ed</span></div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="card c-end">
+    <h3>🏁 My results</h3>
+    <div class="big-score"><span id="bigNow">0</span> / 100</div>
+    <div id="gradeNow" style="font-size:26px;font-weight:600;margin-top:2px;color:var(--purple)">Grade: —</div>
+    <div id="endMsg" style="font-size:20px;margin-top:4px">Keep going — you can do it! 💪</div>
+    <div class="res-grid">
+      <div><span id="r_cls">0</span>Classify<br>/18</div>
+      <div><span id="r_ex1">0</span>Exercise 1<br>/9</div>
+      <div><span id="r_ex2">0</span>Exercise 2<br>/6</div>
+      <div><span id="r_ex3">0</span>Exercise 3<br>/6</div>
+      <div><span id="r_ex4">0</span>Exercise 4<br>/6</div>
+    </div>
+    <div class="noprint">
+      <button class="btn green" id="btnSubmit" onclick="submitToTeacher()">📨 Submit to Teacher</button>
+    </div>
+    <div class="msg" id="msgSubmit"></div>
+  </section>
+
+  <div class="foot">Ms Ikram B · Fasiih School · Past Simple</div>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const norm=s=>s.toLowerCase().replace(/[^a-z' ]/g,'').replace(/\s+/g,' ').trim();
+const TOT={cls:18,ex1:9,ex2:6,ex3:6,ex4:6},GOT={cls:0,ex1:0,ex2:0,ex3:0,ex4:0},DONE={};
+const TOTAL=45;
+const EMAIL='ikram.boudaoud25@gmail.com';
+const LOCKED={cls:0,ex1:0,ex2:0,ex3:0};
+function gradeOf(p){return p>=90?'A':p>=80?'B':p>=70?'C':p>=60?'D':'F';}
+
+/* date */
+(function(){const d=new Date();$('dt').value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
+
+/* confetti */
+const cv=$('confetti'),cx=cv.getContext('2d');let parts=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);
+function boom(){const col=['#ff4d6d','#ffd23f','#2fd4ff','#7b4bd6','#14b86a','#ff8a1f'];
+ for(let i=0;i<150;i++)parts.push({x:innerWidth/2,y:innerHeight/3,vx:(Math.random()-.5)*16,vy:Math.random()*-12-3,s:6+Math.random()*7,c:col[i%6],r:Math.random()*6,vr:(Math.random()-.5)*.5,l:110});}
+(function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.l>0);
+ for(const p of parts){p.vy+=.35;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.l--;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);cx.restore();}
+ requestAnimationFrame(loop);})();
+
+/* score */
+function upd(){
+ const g=Object.values(GOT).reduce((a,b)=>a+b,0);
+ const pct=Math.round(100*g/TOTAL);
+ $('scoreNow').textContent=pct;$('bigNow').textContent=pct;
+ $('progFill').style.width=(100*g/TOTAL)+'%';
+ const gr=gradeOf(pct);if($('gradeNow'))$('gradeNow').textContent=g===0?'Grade: —':'Grade: '+gr;
+ for(const k in TOT){$('sc_'+k).textContent=GOT[k]+' / '+TOT[k];$('r_'+k).textContent=GOT[k];
+  if(GOT[k]===TOT[k]&&!DONE[k]){DONE[k]=1;boom();}}
+ $('endMsg').textContent=pct===100?'🏆 Perfect! Billy is proud of you!':pct>=90?'🌟 Excellent — Grade A!':pct>=80?'👍 Great work — Grade B!':pct>=70?'🙂 Good job — Grade C!':pct>=60?'📘 Fair — Grade D, keep practising!':'Keep going — you can do it! 💪';
+}
+function msg(id,t){$(id).textContent=t}
+
+/* video + highlights */
+function toggleVideo(){const w=$('vwrap'),f=$('yt');
+ if(w.classList.contains('hidden')){f.src='https://www.youtube-nocookie.com/embed/WDg85KdxFHU';w.classList.remove('hidden');$('vbtn').textContent='✖ Hide video';}
+ else{f.src='';w.classList.add('hidden');$('vbtn').textContent='📺 Watch here';}}
+function toggleHL(){const off=document.body.classList.toggle('nohl');$('hlBtn').textContent='🔦 Verbs: '+(off?'OFF':'ON');}
+
+/* ---------- CLASSIFY ---------- */
+const VERBS=[['dressed','r'],['cycled','r'],['looked','r'],['delivered','r'],['started','r'],['stopped','r'],
+ ['woke up','i'],['got','i'],['ate','i'],['left','i'],['was','i'],['saw','i'],['put','i'],['said','i'],['took','i'],['went','i'],['thought','i'],['fell','i']];
+let selChip=null,dragChip=null;
+function buildCls(){
+ const bank=$('bank');bank.innerHTML='';
+ shuffle(VERBS.slice()).forEach(([w,t])=>{
+  const c=document.createElement('button');c.className='chip';c.textContent=w;c.dataset.t=t;c.draggable=true;
+  c.onclick=e=>{e.stopPropagation();chipClick(c)};
+  c.ondragstart=()=>{dragChip=c};
+  bank.appendChild(c);});
+}
+function chipClick(c){
+ if(c.classList.contains('ok'))return;
+ if(c.parentElement.id==='bank'){
+  if(selChip)selChip.classList.remove('sel');
+  if(selChip===c){selChip=null;return}
+  selChip=c;c.classList.add('sel');
+ }else{c.classList.remove('bad');$('bank').appendChild(c);}
+}
+function zoneClick(z){if(!selChip)return;z.querySelector('.drop').appendChild(selChip);selChip.classList.remove('sel');selChip=null;}
+function dropTo(e,target){e.preventDefault();if(!dragChip||dragChip.classList.contains('ok'))return;target.appendChild(dragChip);dragChip.classList.remove('sel','bad');dragChip=null;}
+function checkCls(){
+ if(LOCKED.cls)return;
+ let ok=0;
+ document.querySelectorAll('.zone').forEach(z=>z.querySelectorAll('.chip').forEach(c=>{
+  if(c.classList.contains('ok')){ok++;return}
+  if(c.dataset.t===z.dataset.t){c.classList.add('ok');ok++;}
+  else{c.classList.add('bad');}
+ }));
+ GOT.cls=ok;upd();
+ msg('msgCls',ok===TOT.cls?'🎉 Perfect! All verbs are in the right place.':ok+' correct out of '+TOT.cls+'.');
+ lockCls();
+}
+function lockCls(){
+ LOCKED.cls=1;
+ document.querySelectorAll('.chip').forEach(c=>{c.draggable=false;c.onclick=null;c.ondragstart=null;});
+ const b=$('btnCls');if(b)b.disabled=true;
+}
+
+/* ---------- EX 1 ---------- */
+const EX1T=['Billy {0} (wake up) at 4:30 in the morning.','He {1} (get) dressed and {2} (eat) breakfast.','Billy {3} (cycle) to the shop with Rocky.','He {4} (see) two big bags of newspapers.','Rocky {5} (start) barking loudly at a fox.','It {6} (take) an hour and a half to finish.','Billy {7} (go) home and {8} (go) back to bed.'];
+const EX1A=[['woke up','woke'],['got'],['ate'],['cycled'],['saw'],['started'],['took'],['went'],['went']];
+$('ex1').innerHTML=EX1T.map(t=>'<li>'+t.replace(/\{(\d)\}/g,(m,i)=>'<input class="fill" data-i="'+i+'" autocomplete="off" autocapitalize="off" spellcheck="false" oninput="this.classList.remove(\'bad\')">')+'</li>').join('');
+function checkEx1(){
+ if(LOCKED.ex1)return;
+ let ok=0;
+ document.querySelectorAll('.fill').forEach(inp=>{
+  if(inp.readOnly){ok++;return}
+  const v=norm(inp.value);
+  if(v&&EX1A[inp.dataset.i].includes(v)){inp.classList.add('ok');inp.classList.remove('bad');ok++;}
+  else if(v){inp.classList.add('bad');}
+ });
+ GOT.ex1=ok;upd();
+ msg('msg1',ok===TOT.ex1?'🎉 Perfect!':ok+' correct out of '+TOT.ex1+'.');
+ lockEx1();
+}
+function lockEx1(){
+ LOCKED.ex1=1;
+ document.querySelectorAll('.fill').forEach(inp=>inp.readOnly=true);
+ const b=$('btnEx1');if(b)b.disabled=true;
+}
+
+/* ---------- EX 2 ---------- */
+const EX2=[['Billy woke up at 7:00 in the morning.',0,'He woke up at 4:30.'],['Billy took his bicycle and Rocky with him.',1,'He left with his bicycle and his dog, Rocky.'],['Billy delivered five newspapers to the white house.',1,'He put five newspapers through the letter box of the big white house.'],['Billy saw the postman on his way.',0,'He saw the milkman, not the postman.'],['Rocky started barking because he saw a fox.',1,'Rocky saw a fox and started barking.'],['Billy decided to quit his new job.',0,'He was tired, but happy — he thought about the money.']];
+$('ex2').innerHTML=EX2.map((q,i)=>'<li data-i="'+i+'">'+q[0]+' <span class="tf"><button onclick="pickTF(this,1)">True</button><button onclick="pickTF(this,0)">False</button></span><span class="why"></span></li>').join('');
+function pickTF(b,v){const li=b.closest('li');if(li.dataset.done)return;li.querySelectorAll('.tf button').forEach(x=>x.classList.remove('sel','bad'));b.classList.add('sel');li.dataset.sel=v;}
+function checkEx2(){
+ if(LOCKED.ex2)return;
+ let ok=0;
+ document.querySelectorAll('#ex2 li').forEach(li=>{
+  const q=EX2[li.dataset.i];
+  if(li.dataset.done){ok++;return}
+  const sel=li.dataset.sel;
+  if(sel===undefined)return;
+  const btn=li.querySelector('.tf button.sel');
+  if(+sel===q[1]){btn.classList.remove('sel');btn.classList.add('ok');li.dataset.done=1;li.querySelector('.why').textContent='✔ '+q[2];ok++;}
+  else{btn.classList.remove('sel');btn.classList.add('bad');}
+ });
+ GOT.ex2=ok;upd();
+ msg('msg2',ok===TOT.ex2?'🎉 Perfect!':ok+' correct out of '+TOT.ex2+'.');
+ lockEx2();
+}
+function lockEx2(){
+ LOCKED.ex2=1;
+ document.querySelectorAll('#ex2 li').forEach(li=>li.querySelectorAll('.tf button').forEach(b=>b.disabled=true));
+ const b=$('btnEx2');if(b)b.disabled=true;
+}
+
+/* ---------- EX 3 ---------- */
+const EX3=[['Rocky started barking at a fox.',5],['Billy woke up at 4:30 in the morning.',1],['Billy went back to bed and fell asleep.',6],['Billy delivered newspapers to every house.',4],['Billy got dressed and ate breakfast.',2],['Billy cycled to the shop with Rocky.',3]];
+$('ex3').innerHTML=EX3.map((q,i)=>'<li style="padding-left:0"><select class="num" data-i="'+i+'" onchange="this.classList.remove(\'bad\')"><option value="">–</option>'+[1,2,3,4,5,6].map(n=>'<option>'+n+'</option>').join('')+'</select>'+q[0]+'</li>').join('');
+document.querySelectorAll('#ex3>li').forEach(li=>li.style.setProperty('--x','0'));
+(function(){const st=document.createElement('style');st.textContent='#ex3>li::before{display:none}';document.head.appendChild(st);})();
+function checkEx3(){
+ if(LOCKED.ex3)return;
+ let ok=0;
+ document.querySelectorAll('.num').forEach(s=>{
+  if(s.disabled){ok++;return}
+  if(!s.value)return;
+  if(+s.value===EX3[s.dataset.i][1]){s.classList.add('ok');s.classList.remove('bad');ok++;}
+  else s.classList.add('bad');
+ });
+ GOT.ex3=ok;upd();
+ msg('msg3',ok===TOT.ex3?'🎉 Perfect! The story is in order.':ok+' correct out of '+TOT.ex3+'.');
+ lockEx3();
+}
+function lockEx3(){
+ LOCKED.ex3=1;
+ document.querySelectorAll('.num').forEach(s=>s.disabled=true);
+ const b=$('btnEx3');if(b)b.disabled=true;
+}
+
+/* ---------- EX 4 ---------- */
+const PAIRS=[['wake up','woke up'],['get','got'],['see','saw'],['go','went'],['think','thought'],['take','took']];
+const RIGHT=['went','saw','took','woke up','thought','got'];
+const COLS=['#ff4f8b','#2f7bff','#14b86a','#ff8a1f','#7b4bd6','#0fb5a5'];
+let selL=null,selR=null,matched=0;
+$('mL').innerHTML=PAIRS.map(p=>'<button class="mb" data-k="'+p[1]+'" onclick="pick(\'L\',this)">'+p[0]+'</button>').join('');
+$('mR').innerHTML=RIGHT.map(w=>'<button class="mb" data-k="'+w+'" onclick="pick(\'R\',this)">'+w+'</button>').join('');
+function pick(side,b){
+ if(b.classList.contains('done'))return;
+ if(side==='L'){if(selL)selL.classList.remove('sel');selL=b}else{if(selR)selR.classList.remove('sel');selR=b}
+ b.classList.add('sel');
+ if(selL&&selR){
+  const L=selL,R=selR;selL=selR=null;
+  if(L.dataset.k===R.dataset.k){const col=COLS[matched%6];[L,R].forEach(x=>{x.classList.remove('sel');x.classList.add('done');x.style.background=col});matched++;GOT.ex4=matched;upd();
+   msg('msg4',matched===TOT.ex4?'🎉 Perfect!':'✔ '+L.textContent+' → '+R.textContent);}
+  else{[L,R].forEach(x=>{x.classList.add('shake');setTimeout(()=>x.classList.remove('shake','sel'),450)});msg('msg4','Not a pair — try again!');}
+ }
+}
+
+/* ---------- EX 5 ---------- */
+const STARTERS=['This morning I woke up at ','I got dressed and ','I ate ','Then I went to ','I saw ','I felt '];
+$('starters').innerHTML=STARTERS.map(s=>'<button onclick="addStarter(this)">'+s.trim()+' …</button>').join('');
+function addStarter(b){const t=$('ex5'),s=STARTERS[[...b.parentElement.children].indexOf(b)];const v=t.value;t.value=v+(v&&!/[\s]$/.test(v)?' ':'')+s;t.focus();countEx5();}
+function countEx5(){const v=$('ex5').value.trim();const sn=v?v.split(/[.!?]+/).filter(x=>x.trim()).length:0;const w=v?v.split(/\s+/).length:0;$('cnt').textContent=sn+' sentence'+(sn===1?'':'s')+' · '+w+' words'+(sn>=3?' ✅':'');}
+$('ex5').addEventListener('input',countEx5);
+
+/* ---------- SUBMIT ---------- */
+function collect(){
+ const L=[],g=Object.values(GOT).reduce((a,b)=>a+b,0);
+ const pct=Math.round(100*g/TOTAL);
+ L.push("Billy's Paper Round — Past Simple Worksheet");
+ L.push('Name: '+($('nm').value||'—')+'   Date: '+$('dt').value);
+ L.push('Score: '+pct+' / 100  ·  Grade: '+gradeOf(pct)+'  ·  Raw '+g+'/'+TOTAL+' (Classify '+GOT.cls+'/18 · Ex1 '+GOT.ex1+'/9 · Ex2 '+GOT.ex2+'/6 · Ex3 '+GOT.ex3+'/6 · Ex4 '+GOT.ex4+'/6)');
+ const zr=[...document.querySelectorAll('.zone.r .chip')].map(c=>c.textContent).join(', ')||'—';
+ const zi=[...document.querySelectorAll('.zone.i .chip')].map(c=>c.textContent).join(', ')||'—';
+ L.push('','Classify — Regular: '+zr,'Classify — Irregular: '+zi);
+ L.push('','Exercise 1: '+[...document.querySelectorAll('.fill')].map((i,k)=>(k+1)+') '+(i.value||'—')).join('  '));
+ L.push('Exercise 2: '+[...document.querySelectorAll('#ex2 li')].map((li,k)=>{const b=li.querySelector('.tf button.ok,.tf button.sel,.tf button.bad');return (k+1)+') '+(b?b.textContent:'—')}).join('  '));
+ L.push('Exercise 3: '+[...document.querySelectorAll('.num')].map((s,k)=>EX3[k][0]+' → '+(s.value||'—')).join(' | '));
+ L.push('Exercise 4: '+[...document.querySelectorAll('#mL .mb.done')].map(b=>b.textContent+' → '+b.dataset.k).join(', ')||'—');
+ L.push('','Exercise 5:',$('ex5').value||'—');
+ return L.join('\n');
+}
+async function submitToTeacher(){
+ const btn=$('btnSubmit');
+ const name=($('nm').value||'').trim();
+ if(!name){
+  msg('msgSubmit','⚠️ Please write your name before submitting.');
+  $('nm').focus();
+  $('nm').scrollIntoView({behavior:'smooth',block:'center'});
+  return;
+ }
+ const g=Object.values(GOT).reduce((a,b)=>a+b,0);
+ const pct=Math.round(100*g/TOTAL);
+ if(!confirm('Submit to your teacher?\n\nName: '+name+'\nScore: '+pct+' / 100  ·  Grade: '+gradeOf(pct)+'\n\nYour answers will be sent by email and cannot be changed afterwards.')){
+  return;
+ }
+ const t=collect();
+ btn.disabled=true;btn.textContent='⏳ Sending…';
+ const payload={
+  _subject:"Billy's Paper Round — "+name,
+  _captcha:'false',
+  _template:'table',
+  Name:name,
+  Date:$('dt').value||'—',
+  Score:pct+' / 100',
+  Grade:gradeOf(pct),
+  Answers:t
+ };
+ try{
+  const r=await fetch('https://formsubmit.co/ajax/'+EMAIL,{
+   method:'POST',
+   headers:{'Content-Type':'application/json','Accept':'application/json'},
+   body:JSON.stringify(payload)
+  });
+  const j=await r.json().catch(()=>({}));
+  if(r.ok&&(j.success==='true'||j.success===true)){
+   msg('msgSubmit','✅ Submitted! Your teacher will receive your answers by email.');
+  }else{
+   throw new Error(j.message||('HTTP '+r.status));
+  }
+ }catch(e){
+  msg('msgSubmit','⚠️ Automatic send failed — opening your email app instead.');
+  const url='mailto:'+EMAIL+'?subject='+encodeURIComponent("Billy's Paper Round — "+name)+'&body='+encodeURIComponent(t);
+  location.href=url;
+ }finally{
+  btn.disabled=false;btn.textContent='📨 Submit to Teacher';
+ }
+}
+
+buildCls();upd();
+</script>
+</body>
+</html>
